@@ -1,0 +1,402 @@
+​​​​{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    html {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        position: relative;
+        height: 100%;
+
+        background: linear-gradient(45deg, #7a3fe7, #60efff);
+    }
+
+    .shelf {
+        height: 8px;
+        border-radius: 10px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        border-bottom: 10px solid #000000;
+    }
+
+    .shelf:hover {
+        animation: shelf-lift 0.5s ease;
+        animation-iteration-count: 1;
+        transform-origin: 50% 50%;
+        cursor: pointer;
+    }
+
+    .shelf:hover .book {
+        animation: book-bounce 0.5s ease;
+        animation-iteration-count: 1;
+    }
+
+    .book {
+        margin-bottom: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 2px;
+        font-size: 20px;
+        overflow: hidden;
+        line-height: 15%;
+        text-align: center;
+        font-weight: lighter;
+    }
+
+    .book:nth-child(0):before {
+        content: "---";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(0) {
+        height: 57px;
+        animation-delay: 0s !important;
+        background-color: #ef541b;
+        width: 9px;
+    }
+
+    .book:nth-child(1):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(1) {
+        height: 63px;
+        animation-delay: 0.002s !important;
+        background-color: #ffc0cb;
+        width: 9px;
+    }
+
+    .book:nth-child(2):before {
+        content: "";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(2) {
+        height: 70px;
+        animation-delay: 0.004s !important;
+        background-color: #78d663;
+        width: 11px;
+    }
+
+    .book:nth-child(3):before {
+        content: "---";
+        color: #111111;
+    }
+
+    .book:nth-child(3) {
+        height: 44px;
+        animation-delay: 0.006s !important;
+        background-color: #f6c9b9;
+        width: 9px;
+    }
+
+    .book:nth-child(4):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(4) {
+        height: 45px;
+        animation-delay: 0.008s !important;
+        background-color: #52aca2;
+        width: 8px;
+    }
+
+    .book:nth-child(5):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(5) {
+        height: 59px;
+        animation-delay: 0.01s !important;
+        background-color: #a52a5e;
+        width: 9px;
+    }
+
+    .book:nth-child(6):before {
+        content: "--";
+        color: #111111;
+    }
+
+    .book:nth-child(6) {
+        height: 60px;
+        animation-delay: 0.012s !important;
+        background-color: #aa5e40;
+        width: 8px;
+    }
+
+    .book:nth-child(7):before {
+        content: "--";
+        color: #111111;
+    }
+
+    .book:nth-child(7) {
+        height: 62px;
+        animation-delay: 0.014s !important;
+        background-color: #666666;
+        width: 11px;
+    }
+
+    .book:nth-child(8):before {
+        content: "---";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(8) {
+        height: 52px;
+        animation-delay: 0.016s !important;
+        background-color: #aa5e40;
+        width: 9px;
+    }
+
+    .book:nth-child(9):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(9) {
+        height: 70px;
+        animation-delay: 0.018s !important;
+        background-color: #999999;
+        width: 8px;
+    }
+
+    .book:nth-child(10):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(10) {
+        height: 61px;
+        animation-delay: 0.02s !important;
+        background-color: #e9d7c7;
+        width: 11px;
+    }
+
+    .book:nth-child(11):before {
+        content: "--";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(11) {
+        height: 61px;
+        animation-delay: 0.022s !important;
+        background-color: #cdcdd2;
+        width: 10px;
+    }
+
+    .book:nth-child(12):before {
+        content: "---";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(12) {
+        height: 62px;
+        animation-delay: 0.024s !important;
+        background-color: #e9d7c7;
+        width: 10px;
+    }
+
+    .book:nth-child(13):before {
+        content: "";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(13) {
+        height: 65px;
+        animation-delay: 0.026s !important;
+        background-color: #f6c9b9;
+        width: 9px;
+    }
+
+    .book:nth-child(14):before {
+        content: "---";
+        color: #111111;
+    }
+
+    .book:nth-child(14) {
+        height: 65px;
+        animation-delay: 0.028s !important;
+        background-color: #000000;
+        width: 10px;
+    }
+
+    .book:nth-child(15):before {
+        content: "";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(15) {
+        height: 64px;
+        animation-delay: 0.03s !important;
+        background-color: #489cbd;
+        width: 8px;
+    }
+
+    .book:nth-child(16):before {
+        content: "---";
+        color: #111111;
+    }
+
+    .book:nth-child(16) {
+        height: 65px;
+        animation-delay: 0.032s !important;
+        background-color: #dbdcff;
+        width: 8px;
+    }
+
+    .book:nth-child(17):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(17) {
+        height: 55px;
+        animation-delay: 0.034s !important;
+        background-color: #ff9966;
+        width: 10px;
+    }
+
+    .book:nth-child(18):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(18) {
+        height: 43px;
+        animation-delay: 0.036s !important;
+        background-color: #aa5e40;
+        width: 8px;
+    }
+
+    .book:nth-child(19):before {
+        content: "";
+        color: #eeeeee;
+    }
+
+    .book:nth-child(19) {
+        height: 42px;
+        animation-delay: 0.038s !important;
+        background-color: #bada55;
+        width: 10px;
+    }
+
+    .book:nth-child(20):before {
+        content: "";
+        color: #111111;
+    }
+
+    .book:nth-child(20) {
+        height: 47px;
+        animation-delay: 0.04s !important;
+        background-color: #999999;
+        width: 10px;
+    }
+
+    @keyframes book-bounce {
+        0% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-20px);
+        }
+
+        80% {
+            transform: translateY(-2px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes shelf-lift {
+        0% {
+            transform: translateY(0) rotate(0);
+        }
+
+        20% {
+            transform: translateY(-5px) rotate(2deg);
+        }
+
+        40% {
+            transform: translateY(-10px) rotate(0);
+        }
+
+        60% {
+            transform: translateY(-10px) rotate(-2deg);
+        }
+
+        80% {
+            transform: translateY(-5px) rotate(-1deg);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<body>
+    <div class="container mt-5">
+        <!-- Create a title "Library Management System" -->
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <br />
+                <h1 class="text-center">Welcome To Books & Co library System</h1>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+
+        <div class="shelf">
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <br />
+            <br />
+            <br />
+
+         
+        </div>
+</body>
+<br>
+<p style="text-align: center">Welcome to Books & Co, Tel Aviv's premier destination for all your book-related needs. At Books & Co, we are passionate about connecting book lovers with the stories and knowledge they seek. Our bookstore is a haven for bibliophiles, offering a curated collection of titles spanning various genres, languages, and eras.</p>
+<br>
+<p style="text-align: center">Whether you're an avid reader, a collector, or someone new to the literary world, we cater to all interests and tastes. At Books & Co, we believe that books hold the power to inspire, educate, and transport us to different worlds. We pride ourselves on our commitment to providing a diverse selection of books that encompasses both timeless classics and contemporary bestsellers.</p>
+<p style="text-align: center">Our mission is not just to be a bookstore but a hub for book enthusiasts to connect and share their love for literature. Alongside our extensive collection, we offer a range of services to enhance your reading experience. Looking to expand your personal library? Our knowledgeable staff is here to guide you in finding the perfect addition to your shelves. Need to make space for new reads? We also buy and accept book donations, ensuring that beloved stories find new homes.
+    Furthermore, we understand that sometimes you may want to explore a book without committing to a purchase. That's why we provide a book loaning service, allowing you to borrow books and experience the joy of reading while minimizing financial constraints. We believe that everyone should have access to the transformative power of books, and our lending program aims to make that possible.</p>
+<p style="text-align: center">Located in the vibrant city of Tel Aviv, our bookstore offers a welcoming and cozy atmosphere where you can immerse yourself in the world of literature. We host regular author events, book clubs, and literary discussions to foster a sense of community and create opportunities for book lovers to connect with like-minded individuals.</p>
+<p style="text-align: center">At Books & Co, we are dedicated to providing exceptional service and a delightful browsing experience. Whether you're searching for a captivating novel, a thought-provoking non-fiction title, or simply seeking literary advice, our friendly and passionate team is here to assist you every step of the way.
+    Come visit Books & Co, where the love for books is celebrated, stories come alive, and the literary journey awaits you.
+    </p>
+{% endblock %}
