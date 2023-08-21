@@ -36,12 +36,13 @@ def register(request):
 
         if password1 == password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request, "Username already exists")
+                messages.info(request, "Username already exist")
                 return redirect("register")
             
             elif User.objects.filter(email=email).exists():
                 messages.info(request, "Email already registered")
                 return redirect("register")
+            
             else:
                 user = User.objects.create_user(
                     first_name=first_name,
@@ -55,7 +56,6 @@ def register(request):
         else:
             messages.info(request, "Password not matches")
             return redirect("register")
-        
     else:
         return render(request, "register.html")
 
@@ -75,12 +75,10 @@ def issue(request):
         issue_item.save()
         book.update(quantity=book[0].quantity - 1)
         messages.success(request, "Book issued successfully.")
-
     my_items = IssuedItem.objects.filter(
         user_id=request.user, return_date__isnull=True
     ).values_list("book_id")
     books = Book.objects.exclude(id__in=my_items).filter(quantity__gt=0)
-
     return render(request, "issue_item.html", {"books": books})
 
 @login_required(login_url="login")
@@ -103,7 +101,6 @@ def return_item(request):
         )
         issue_item.update(return_date=date.today())
         messages.success(request, "Book returned successfully.")
-
     my_items = IssuedItem.objects.filter(
         user_id=request.user, return_date__isnull=True
     ).values_list("book_id")
