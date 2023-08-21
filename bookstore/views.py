@@ -43,6 +43,10 @@ def register(request):
                 messages.info(request, "Email already registered")
                 return redirect("register")
             
+            elif not email:
+                messages.info(request, "Please fill the form fields")
+                return redirect("register")
+            
             else:
                 user = User.objects.create_user(
                     first_name=first_name,
