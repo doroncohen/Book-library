@@ -22,8 +22,9 @@
       <tr>
         <th class="" scope="col">Book Name</th>
         <th class="" scope="col">Author Name</th>
+        <th class="" scope="col">Quantity left</th>
         <th class="" scope="col">Subject</th>
-        <th class="" scope="col">Issue</th>
+        <th class="" scope="col">Loan</th>
       </tr>
     </thead>
     <tbody id="table_data">
@@ -31,6 +32,7 @@
       <tr>
         <td>{{book.book_name}}</td>
         <td>{{book.author_name}}</td>
+        <td>{{book.quantity}}</td>
         <td>{{book.subject}}</td>
         <td>
 
@@ -38,7 +40,7 @@
             {% csrf_token %}
             <input type="hidden" name="book_id" value="{{book.id}}" />
             <button type="submit" class="btn btn-outline-success btn-sm">
-              <b>Issue</b>
+              <b>Loan</b>
             </button>
           </form>
 
