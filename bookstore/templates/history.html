@@ -35,8 +35,6 @@
       </li>
       {% endif %} {% for i in "x"|ljust:books.paginator.num_pages %}
       <li class="page-item {% if forloop.counter == books.number %}active{% endif %}">
-        <!-- Show the link if there are more than 1 page -->
-
         {% if books.paginator.num_pages > 1 %}
         <a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
         {% endif %}
